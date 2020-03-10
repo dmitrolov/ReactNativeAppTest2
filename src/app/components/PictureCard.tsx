@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Image, StyleSheet, View, Text } from 'react-native';
-import { onSearchSubmit } from '../api/unsplash';
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 
 interface PictureCardProps {
   pictureUrl: string;
 }
 
 const PictureCard = (props: PictureCardProps) => {
-
   return (
     <View style={ styles.pictureCard }>
       <Image style={ {
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
         borderWidth: 1
-      } } source={ { uri: props.pictureUrl } } />
+      } } source={ { uri: props.pictureUrl || 'src/assets/no-image.svg' } } />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   pictureCard: {
-    paddingTop: 16
+    paddingTop: 16,
+    borderWidth: 1,
+    borderColor: 'red'
   }
 });
 

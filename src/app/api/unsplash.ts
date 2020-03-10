@@ -1,6 +1,18 @@
 import axios, { AxiosResponse } from 'axios';
 
-export const onSearchSubmit: (title: string) => Promise<AxiosResponse> = (title) => {
+export interface PictureData {
+  id: string;
+  urls: {
+    full: string;
+    small: string;
+  }
+}
+
+export interface SearchResult {
+  results: PictureData[]
+}
+
+export const onSearchSubmit: (title: string) => Promise<AxiosResponse<SearchResult>> = (title) => {
   const options = {
     params: {
       query: title,
@@ -11,6 +23,5 @@ export const onSearchSubmit: (title: string) => Promise<AxiosResponse> = (title)
     }
   };
 
-  return axios
-  .get('https://api.unsplash.com/search/photos', options)
+  return axios.get('https://api.unsplash.com/search/photos', options)
 };
